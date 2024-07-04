@@ -1,1 +1,23 @@
 /* You can add global styles to this file, and also import other style files */
+/* styles.css */
+
+/* Custom styles to ensure responsiveness */
+@media (max-width: 767px) {
+    #navbarVertical {
+      width: 100%;
+      position: fixed;
+      z-index: 1050;
+      top: 0;
+      left: 0;
+    }
+    .h-lg-full {
+      margin-top: 56px; /* Adjust based on your navbar height */
+    }
+  }
+  
+  @media (min-width: 768px) {
+    #navbarVertical {
+      width: 250px;
+    }
+  }
+  

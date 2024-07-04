@@ -1,0 +1,127 @@
+/* Ensure the sidebar remains fixed and styled appropriately */
+@import url(https://unpkg.com/@webpixels/css@1.1.5/dist/index.css);
+@import url("https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.4.0/font/bootstrap-icons.min.css");
+
+/* Adjust sidebar width and positioning based on viewport */
+@media (min-width: 768px) {
+  #navbarVertical {
+    width: 250px; /* Fixed width for the sidebar */
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0; /* Ensure sidebar stretches to the bottom */
+    z-index: 1050;
+    background-color: rgb(11, 11, 39); /* Sidebar background color */
+    color: white; /* Sidebar text color */
+    overflow-y: auto; /* Allow sidebar to scroll if needed */
+  }
+
+  .h-lg-full {
+    margin-left: 250px; /* Adjust main content margin to accommodate sidebar */
+  }
+}
+
+@media (max-width: 767px) {
+  #navbarVertical {
+    width: 100%; /* Full width on smaller screens */
+    position: fixed;
+    z-index: 1050;
+    top: 0;
+    left: 0;
+  }
+
+  .h-lg-full {
+    margin-top: 56px; /* Adjust margin to accommodate collapsed navbar */
+  }
+}
+
+nav li a {
+  color: white;
+}
+
+.container {
+  height: 10vh;
+  display: flex;
+  justify-content: end;
+}
+
+.profile {
+  position: relative;
+  text-align: center;
+}
+
+.profile img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 2px solid red;
+  cursor: pointer;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: white;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  transition: all 2s;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  background-color: #080b37;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.profile ul {
+  background-color: #080b37;
+  width: 200px;
+  height: 190px;
+  border-radius: 10px;
+  right: 25px;
+  top: 7px;
+  position: absolute;
+  padding: 8px;
+  transition: all 0.5s;
+  z-index: 1;
+}
+
+.profile ul::before {
+  content: '';
+  position: absolute;
+  background-color: #fff;
+  height: 10px;
+  width: 10px;
+  top: -5px;
+  transform: rotate(45deg);
+}
+
+.profile ul li {
+  list-style: none;
+  text-align: left;
+  font-size: 15px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  transition: all 0.5s;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.profile ul li:hover {
+  background-color: #eee;
+}
+
+.profile ul li i {
+  margin-right: 7px;
+}

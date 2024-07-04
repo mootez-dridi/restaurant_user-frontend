@@ -1,0 +1,91 @@
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-12">
+      <h2 class="mb-4" style="color: #1B8BD1;">Reservations</h2>
+      <div *ngIf="msgSucc" class="alert alert-success" role="alert">
+        {{ msgSucc }}
+      </div>
+      <div class="mb-4">
+        <input type="text" class="form-control" placeholder="Search reservations..." [(ngModel)]="searchTerm">
+      </div>
+      <div class="list-group">
+        <div *ngFor="let reservation of filteredReservations()" class="list-group-item">
+          <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1">{{ reservation.name }}</h5>
+            <small>{{ reservation.date }}</small>
+          </div>
+          <p class="mb-1">{{ reservation.details }}</p>
+          <button class="btn btn-success btn-sm me-2" (click)="selectReservationForApproval(reservation)">
+            Accept
+          </button>
+          <button class="btn btn-danger btn-sm" (click)="selectReservationForRejection(reservation)">
+            Reject
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Approve Modal -->
+  <div id="approveModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="approveModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="approveModalLabel">Approve Reservation</h5>
+          <button type="button" class="btn-close" aria-label="Close" (click)="closeModals()"></button>
+        </div>
+        <div class="modal-body">
+          Are you sure you want to approve this reservation?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" (click)="closeModals()">Close</button>
+          <button type="button" class="btn btn-primary" (click)="approveReservation(); closeModals()">Approve</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Reject Modal -->
+  <div id="rejectModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="rejectModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="rejectModalLabel">Reject Reservation</h5>
+          <button type="button" class="btn-close" aria-label="Close" (click)="closeModals()"></button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="rejectionReason">Reason for Rejection:</label>
+            <input type="text" class="form-control" id="rejectionReason" [(ngModel)]="rejectionReason">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" (click)="closeModals()">Close</button>
+          <button type="button" class="btn btn-primary" (click)="confirmRejectReservation()">Reject</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Confirm Reject Modal -->
+  <div id="confirmRejectModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="confirmRejectModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="confirmRejectModalLabel">Confirm Rejection</h5>
+          <button type="button" class="btn-close" aria-label="Close" (click)="closeModals()"></button>
+        </div>
+        <div class="modal-body">
+          Are you sure you want to reject this reservation?
+          <div *ngIf="rejectionReason" class="mt-3">
+            <strong>Reason:</strong> {{ rejectionReason }}
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" (click)="closeModals()">Close</button>
+          <button type="button" class="btn btn-primary" (click)="rejectReservation(); closeModals()">Confirm Reject</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

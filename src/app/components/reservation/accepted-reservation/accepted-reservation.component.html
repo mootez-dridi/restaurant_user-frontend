@@ -1,0 +1,12 @@
+<div class="container mt-5">
+  <h2 class="mb-4 title">Accepted Reservations</h2>
+  <div class="list-group">
+    <div *ngFor="let reservation of acceptedReservations" class="list-group-item shadow-sm p-3 mb-3 bg-white rounded">
+      <div class="d-flex w-100 justify-content-between align-items-center">
+        <h5 class="mb-1">{{ reservation.name }}</h5>
+        <small>{{ reservation.date }}</small>
+      </div>
+      <p class="mb-1">{{ reservation.details }}</p>
+    </div>
+  </div>
+</div>
